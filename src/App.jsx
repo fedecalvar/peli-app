@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import SearchBar from './components/SearchBar'
 import MovieCard from './components/MovieCard'
 
-
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY
 const BASE_URL = 'https://api.themoviedb.org/3'
 
@@ -29,19 +28,21 @@ function App() {
   }, [query])
 
   return (
-    <div className="min-h-screen bg-gray-100 px-8 py-6">
-      <h1 className="text-4xl font-bold text-center mb-4">🔍 ¿Qué se mira?</h1>
-      {/* le pasamos setQuery como propiedad, cada vez que el usuario
-      escribe se actualiza query */}
-      <SearchBar onSearch={setQuery} />
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 mt-6">
-        {/* recorremos el array de las películas */}
-        {movies.map((movie) => (
-          // react necesita una key única en cada elemento de una lista
-          // para saber cuál cambio. La API de TMDB nos da un id por película,
-          // asi que usamos eso
-          <MovieCard key={movie.id} movie={movie} />
-        ))}
+    <div className="min-h-screen bg-gray-100">
+      <div className="max-w-6xl mx-auto px-8 py-6">
+        <h1 className="text-4xl font-bold text-center mb-4">🔍 ¿Qué se mira?</h1>
+        {/* le pasamos setQuery como propiedad, cada vez que el usuario
+        escribe se actualiza query */}
+        <SearchBar onSearch={setQuery} />
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 mt-6">
+          {/* recorremos el array de las películas */}
+          {movies.map((movie) => (
+            // react necesita una key única en cada elemento de una lista
+            // para saber cuál cambio. La API de TMDB nos da un id por película,
+            // asi que usamos eso
+            <MovieCard key={movie.id} movie={movie} />
+          ))}
+        </div>
       </div>
     </div>
   )
